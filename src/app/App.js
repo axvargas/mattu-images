@@ -6,10 +6,13 @@ import {
 	MuiThemeProvider,
 	Grid,
 	Container,
+	Fab,
+
 
 } from '@material-ui/core';
 
 import { Pagination } from '@material-ui/lab';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 
 
@@ -18,6 +21,8 @@ import Footer from '../components/footer';
 import Header from '../components/header';
 import Searcher from '../components/searcher';
 import ImagesList from '../components/images';
+import ScrollTop from '../components/scrollTop';
+
 
 const APIKEY = '16518672-993c14d56f9fe9948afa09039';
 
@@ -44,16 +49,20 @@ const App = () => {
 			setImages(response.data.hits);
 
 			//back to top
-
-			const anchor = document.querySelector('.back-to-top-anchor');
-			console.log(anchor);
-			if (anchor) {
-				anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-			}
-
+			handleGoUp()
 		}
 		consultAPI();
 	}, [search, page]);
+
+
+	const handleGoUp = () => {
+		const anchor = (document).querySelector('#back-to-top-anchor');
+
+		if (anchor) {
+			anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+	};
+
 	return (
 		<MuiThemeProvider theme={theme}>
 			<Header title="MattuImgs" />
@@ -66,6 +75,8 @@ const App = () => {
 								<ImagesList search={search} images={images} />
 							</Grid>
 							<Grid item>
+
+
 								<Pagination
 									count={totalPages}
 									variant="outlined"
@@ -73,17 +84,25 @@ const App = () => {
 									onChange={(event, pag) => {
 										console.log("Changing " + pag);
 										setPage(pag);
-									
 									}}
 								/>
+
+
 							</Grid>
 						</React.Fragment>
 					}
 
+
 				</Grid>
 			</Container>
 
+
 			<Footer />
+			<ScrollTop>
+				<Fab className={classes.fab} size="small" aria-label="scroll back to top">
+					<KeyboardArrowUpIcon />
+				</Fab>
+			</ScrollTop>
 		</MuiThemeProvider>
 	);
 }

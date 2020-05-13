@@ -48,6 +48,7 @@ const Searcher = ({setSearch}) => {
                             value={text}
                             helperText={helper}
                             error={error}
+                            autoComplete="off"
                         />
                         <Button
                             className={classes.btn}

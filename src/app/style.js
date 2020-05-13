@@ -3,14 +3,14 @@ const useStyles = makeStyles((theme) => ({
     grid: {
         width: '100%',
         margin: '0px',
-     
+
     },
-    typo:{
+    typo: {
         color: 'black',
         fontWeight: '700',
         marginBottom: '50px',
         marginTop: '80px',
-        
+
     },
     paper: {
         textAlign: 'center',
@@ -20,5 +20,8 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         minHeight: '48px'
     },
+    fab: {
+        backgroundColor: '#ffa000',
+    }
 }));
 export default useStyles;
